@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1>Список статей</h1>
+<form action="{% url 'list' %}" method="get">
+    <input type="search">
+</form>
 {% for article in articles %}
 <p>
     {{article.title}}
