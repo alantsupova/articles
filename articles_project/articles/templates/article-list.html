@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список статей</title>
+</head>
+<body>
+<h1>Список статей</h1>
+{% for article in articles %}
+<p>
+    {{article.title}}
+</p>
+{% endfor %}
+
+</body>
+</html>
