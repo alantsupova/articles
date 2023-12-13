@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Magazine(models.Model):
+    "Модель журнал"
     title = models.CharField(max_length=250)
     website = models.URLField()
     year = models.IntegerField()
@@ -10,10 +11,6 @@ class Magazine(models.Model):
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        verbose_name = 'Журнал'
-        verbose_name_plural = 'Журналы'
 
 
 class Author(models.Model):

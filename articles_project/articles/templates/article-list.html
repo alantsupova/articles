@@ -7,13 +7,16 @@
 <body>
 <h1>Список статей</h1>
 <form action="{% url 'list' %}" method="get">
-    <input type="search">
+    <input name="q" type="text" placeholder="Search...">
 </form>
-{% for article in articles %}
+{% for article in articles_queryset %}
 <p>
-    {{article.title}}
+    <a href="{% url 'detail' pk=article.id %}">{{article.title}}</a>
 </p>
 {% endfor %}
-
+<h3><a href="{% url 'create-author' %}">Добавить автора</a></h3>
+<h3><a href="{% url 'create-magazine' %}">Добавить журнал</a></h3>
+<h3><a href="{% url 'create-keywords' %}">Добавить ключевые слова</a></h3>
+<h3><a href="{% url 'create-article' %}">Добавить статью</a></h3>
 </body>
 </html>

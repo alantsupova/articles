@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, TemplateView
 from .models import Article, Author, Magazine, KeyWords
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 
 class ArticleCreateView(CreateView):
@@ -33,12 +34,25 @@ class KeyWordsCreateView(CreateView):
 
 class ArticleListView(ListView):
     template_name = 'article-list.html'
-    context_object_name = 'articles'
+    context_object_name = 'articles_queryset'
+    model = Article
 
     def get_queryset(self):
-        return Article.objects.filter(title__icontains=self.request.GET.get('q'))
+        query = self.request.GET.get('q')
+        if query:
+            return Article.objects.filter(Q(title__icontains=query)
+                                          | Q(keywords__word__icontains=query)
+                                          | Q(author__name__icontains=query)
+                                          | Q(author__surname__icontains=query))
+        return Article.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q')
         return context
+
+
+class ArticleDetailView(DetailView):
+    template_name = 'article-detail.html'
+    context_object_name = 'article'
+    model = Article

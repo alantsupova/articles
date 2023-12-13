@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список статей</title>
+</head>
+<body>
+<h1>Статья : {{ article.title }}</h1>
+<p>Журнал : <a href="{{ article.magazine.website }}">{{ article.magazine }}</a></p>
+<p>Год выпуска : {{ article.magazine.year }}</p>
+<p>Том : {{ article.magazine.tom }}</p>
+<p>Номер : {{ article.magazine.number }}</p>
+<p>Страницы : {{ article.pages }}</p>
+<p>Ключевые слова : {{ article.keywords }}</p>
+<p>Автор: {{ article.author.name }} {{ article.author.surname }}</p>
+
+<h3><a href="{% url 'list' %}">Вернуться на главную</a></h3>
+</body>
+</html>

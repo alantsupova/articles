@@ -9,6 +9,6 @@ urlpatterns = [
     path('create-magazine/', MagazineCreateView.as_view(), name='create-magazine'),
     path('create-keywords/', KeyWordsCreateView.as_view(), name='create-keywords'),
     path('list/', ArticleListView.as_view(), name='list'),
-    # path('detail/<int:pk>/', PizzaDetailView.as_view(), name='detail'),
+    path('detail/<int:pk>/', ArticleDetailView.as_view(), name='detail'),
     # path('buy/<int:pk>/', PizzaBuyView.as_view(), name='buy'),
 ]
